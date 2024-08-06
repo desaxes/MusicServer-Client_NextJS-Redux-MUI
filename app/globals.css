@@ -18,12 +18,7 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: rgba(134, 15, 124, 0.463);
 }
 
 @layer utilities {
@@ -31,3 +26,20 @@ body {
     text-wrap: balance;
   }
 }
+
+h1 {
+  font-size: 50px;
+  color: white;
+  font-style: italic;
+}
+
+h3 {
+  font-size: 40px;
+  color: white;
+  font-style: italic;
+}
+
+/* .container{
+  margin:0 auto;
+  padding: 0 150px;
+} */

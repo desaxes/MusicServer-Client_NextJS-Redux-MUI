@@ -1,0 +1,58 @@
+.container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    .trackBlock {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: center;
+        align-self: center;
+        width: 50%;
+
+        .info {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            gap: 50px;
+            margin-bottom: 30px;
+
+            img {
+                width: 150px;
+                height: 150px;
+                border-radius: 12px;
+            }
+
+            .text {
+                display: flex;
+                flex-direction: column;
+                max-Width: 500px;
+                white-space: nowrap;
+                overflow: hidden;
+                font-size: 30px;
+            }
+        }
+
+        .text {
+            display: flex;
+            flex-direction: column;
+            font-size: 30px;
+            width: 100%;
+
+            .commentBlock {
+                margin-top: 30px;
+                color:white;
+                .input {
+                    width: 100%;
+                    margin-top: 10px;
+                }
+                .com{
+                    display:flex;
+                    flex-direction:column;
+                    
+                }
+            }
+        }
+    }
+}
