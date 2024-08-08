@@ -42,7 +42,7 @@ const Tracks = () => {
     return (
         <MainContainer>
             <Grid container justifyContent={'center'} width={'100%'}>
-                <Card style={{backgroundColor:'rgb(169, 68, 191)', width:'60%',border:'solid 2px white'}}>
+                <Card style={{backgroundColor:'rgb(255, 255, 255)', width:'60%',border:'solid 2px white'}}>
                     <Box p={3} >
                         <Grid container justifyContent={'space-between'}>
                             <h1>

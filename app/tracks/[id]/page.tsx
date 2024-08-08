@@ -37,8 +37,8 @@ const TrackPage = () => {
                         <p>{track.text}</p>
                         <div className={s.commentBlock}>
                             <p>Comments</p>
-                            <Input className={s.input} style={{ color: 'white' }} color='secondary' placeholder='Your Name'></Input>
-                            <Input className={s.input} style={{ color: 'white' }} color='warning' placeholder='Comment'></Input>
+                            <Input className={s.input} style={{ color: 'black' }} color='secondary' placeholder='Your Name'></Input>
+                            <Input className={s.input} style={{ color: 'black' }} color='warning' placeholder='Comment'></Input>
                         <Button variant='contained' color='secondary' style={{marginLeft:'100%'}}>Send</Button>
                         <div>
                             {track.comments.map(c=>

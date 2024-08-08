@@ -1,6 +1,7 @@
 import Head from "next/head"
 import DrawerComponent from "./drawer"
 import s from "./main-container.module.scss"
+import Player from "./player"
 const MainContainer = ({ children }:any) => {
     return (
         <div className='layout'>
@@ -22,6 +23,7 @@ const MainContainer = ({ children }:any) => {
             <div className={s.container}>
                 {children}
             </div>
+            <Player/>
         </div>
     )
 }
