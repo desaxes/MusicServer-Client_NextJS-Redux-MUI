@@ -1,12 +1,13 @@
 'use client'
 import React from 'react'
-interface TrackProgressProps{
-    left:number;
-    right:number;
-    onChange:(e:any)=>void,
-    width?:string
+interface TrackProgressProps {
+    left: number,
+    right: number,
+    onChange: (e: any) => void,
+    width?: string,
+    audio: boolean
 }
-const TrackProgress:React.FC<TrackProgressProps> = ({left,right,onChange,width}) => {
+const TrackProgress: React.FC<TrackProgressProps> = ({ left, right, onChange, width, audio }) => {
     const track = {
         _id: '231',
         name: 'Track 1reeeee',
@@ -19,9 +20,9 @@ const TrackProgress:React.FC<TrackProgressProps> = ({left,right,onChange,width})
     }
     const active = false
     return (
-        <div style={{display:'flex',width: width}}>
-            <input style={{ width: width }} type='range' min={left}max={right}value={left} onChange={onChange}/>
-            <div>{left}/{right}</div>
+        <div style={{ display: 'flex', width: width,justifyContent:'center',fontSize:'18px' }}>
+            <input style={{ width: width,marginRight:'20px' }} type='range' min={0} max={right} value={left} onChange={onChange} />
+            {!audio ? <div>{left}/{right}</div> : <div>{Math.floor(left / 60) + ':' + ((Math.floor(left % 60) < 10) ? '0':'') + Math.floor(left % 60)}/{Math.floor(right / 60) + ':' + Math.floor(right % 60)}</div>}
         </div>
     )
 }

@@ -1,9 +1,12 @@
 'use client'
 import { Pause, PlayArrow, VolumeUp } from '@mui/icons-material'
 import { IconButton } from '@mui/material'
-import React from 'react'
+import React, { useEffect } from 'react'
 import s from './player.module.scss'
 import TrackProgress from './trackProgress'
+import { useTypedSelector } from '@/hooks/useTypedSelector'
+import { useActions } from '@/hooks/useActions'
+let audio: any
 const Player = () => {
     const track = {
         _id: '231',
@@ -15,19 +18,68 @@ const Player = () => {
         audio: 'http://localhost:5000/audio/c55fda15-9fe4-4027-9aed-c55281d959a5.mp3',
         comments: []
     }
-    const active = false
+    const { active, pause, volume, currentTime, duration } = useTypedSelector(state => state.player)
+    const { pauseTrack, playTrack, setVolume, setCurrentTime, setDuration } = useActions()
+    useEffect(() => {
+        if (!audio) {
+            audio = new Audio()
+        }
+        else {
+            setAudio()
+            // playTrack()
+            // audio.play()
+        }
+    }, [active])
+    const play = () => {
+        if (pause) {
+            console.log(pause)
+            playTrack()
+            audio.play()
+        }
+        else {
+            pauseTrack()
+            audio.pause()
+        }
+    }
+    const changeVolume = (e: React.ChangeEvent<HTMLInputElement>) => {
+        audio.volume = +e.target.value / 100
+        setVolume(+e.target.value)
+    }
+    const changeTime = (e: React.ChangeEvent<HTMLInputElement>) => {
+        audio.currentTime = +e.target.value
+        setCurrentTime(+e.target.value)
+    }
+    const setAudio = () => {
+        if (active) {
+            if (audio.src != active.audio) {
+                audio.src = "http://localhost:5000/" + active.audio
+                audio.volume = volume / 100
+                audio.onloadedmetadata = () => {
+                    setDuration(Math.ceil(audio.duration))
+                }
+                audio.ontimeupdate = () => {
+                    setCurrentTime(Math.ceil(audio.currentTime))
+                }
+                playTrack()
+                audio.play()
+            }
+        }
+    }
+    if (!active) {
+        return null
+    }
     return (
         <div className={s.player}>
-            <IconButton onClick={e => e.stopPropagation()} color='primary' size='large'>
-                {active ? <Pause /> : <PlayArrow />
+            <IconButton onClick={play} color='primary' size='large'>
+                {!pause ? <Pause /> : <PlayArrow />
                 }</IconButton>
             <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', width: '60%' }}>
-                <div  className={s.text}>{track.name}</div>
-                <TrackProgress width={'100%'} left={0} right={100} onChange={() => { }} />
+                <div className={s.text}>{active?.artist}-{active?.name}</div>
+                <TrackProgress audio={true} width={'100%'} left={currentTime} right={duration} onChange={changeTime} />
             </div>
             <div style={{ display: 'flex', gap: '15px' }}>
                 <VolumeUp />
-                <TrackProgress left={0} right={100} onChange={() => { }} />
+                <TrackProgress audio={false} left={volume} right={100} onChange={changeVolume} />
             </div>
         </div>
     )

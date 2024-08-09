@@ -8,6 +8,7 @@
     justify-content: flex-start;
     transition:.3s;
     cursor:pointer;
+    color:black;
     .textblock {
         display:flex;
         flex-direction: column;
@@ -17,12 +18,12 @@
         overflow: hidden; 
         margin:0 20px;
         .name {
-            color: black;
+            // color: black;
             font-size: 24px;
             max-Width: 500px;
         }
         .artist {
-            color: black;
+            // color: black;
             font-size: 20px;
             opacity: 50%;
             max-Width: 500px;
@@ -38,5 +39,6 @@
     }
     &:hover{
         background-color:rgb(78, 0, 116);
+        color:white;
     }
 }
